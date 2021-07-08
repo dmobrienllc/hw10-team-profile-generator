@@ -1,0 +1,136 @@
+:root{
+    --common-header-footer-color:#162e46;
+    --nav-common-background-color:#d8a47f;
+    --card-common-padding:2px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial;
+    margin: 0;
+    padding-bottom: 70px;
+  }
+  
+  header {
+    padding: 17px;
+    text-align: center;
+    background:var(--common-header-footer-color);
+    color: #fff;
+  }
+  
+  nav {
+    display: flex;
+    background:var(--nav-common-background-color);
+  }
+  
+  nav a {
+    color: #13293d;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border:1px solid black;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .main-title {
+    display: inline;
+    padding:5px;
+    padding-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border:1px solid red;
+    padding: 2px;
+  }
+
+  footer {
+    position: fixed;
+    padding: 5px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:var( --common-header-footer-color);
+    color: white;
+    text-align: center;
+ }
+  
+  .samples {
+    flex: 10;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+  }
+  
+  .card {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: var(--card-common-padding);
+    padding-top: 5;
+    flex-basis:20%;
+  }
+
+  .first-card{
+    border-style:solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: var(--card-common-padding);
+    padding-top: 5;
+    flex-basis: 25%;
+  }
+  
+  .card header {
+    padding: 20px;
+  }
+  
+  .card p {
+    text-align: center;
+  }
+  
+  .card img {
+    width: 100%;
+    height: min-content;
+  }
+
+  .contact-methods{
+    flex: 1;
+    background-color: var(--nav-common-background-color);
+    border:1px sold red;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-evenly;
+  }
+
+  .contact-methods li{
+    display: inline;
+    text-decoration: none;
+    padding:8px;
+    font-size: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  @media screen and (max-width: 768px) {
+    main,
+    nav,
+    section {
+      flex-direction: column;
+    }
+  }
