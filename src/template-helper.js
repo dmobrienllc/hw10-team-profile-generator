@@ -1,4 +1,6 @@
 //utility methods for outputting various pieces of the html output document
+let teamController = require("./lib/TeamController");
+
 const generateHeader = () => {
     return `<!DOCTYPE html>
     <html lang="en">
@@ -12,12 +14,12 @@ const generateHeader = () => {
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
       <link rel="stylesheet" href="main.css" />
-      <title>Work Day Scheduler</title>
+      <title>${teamController.getTeamName()}</title>
     </head>
     
     <body>
       <header class="jumbotron">
-        <h1 class="display-3">Team Awesome!</h1>
+        <h1 class="display-3">${teamController.getTeamName()}</h1>
       </header>
       <div class="container-fluid">`;
 }
@@ -29,4 +31,8 @@ const generateFooter = () => {
             <script src="./assets/js/main.js"></script>
         </body>
     </html>`
+}
+
+const generateTeamCards = () => {
+  
 }
