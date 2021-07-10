@@ -1,7 +1,47 @@
 # hw10-team-profile-generator
 Command line app facilitating generation of team profile
 
+## Table of Contents
+1. [General Info](#general-info)
+2. [Screenshot](#screenshot)
+3. [Technologies](#technologies)
+4. [Usage](#usage)
+5. [FAQs](#faqs)
 
+### General Info
+***
+### David OBrien's Team Profile generator
+
+inquirer (console) based application facilitating custom web presentation
+of your software engineering team.
+
+### Screenshot
+![Image text](./finished-screenshot.png)
+
+## Technologies
+***
+A list of technologies used within the project:
+  * node
+  * inquirer
+  * javascript
+  * jest unit testing framework
+
+## Usage
+***
+See link to demo video below:
+
+Link to github repository- https://github.com/dmobrienllc/hw10-team-profile-generator
+
+Link to Team Profile generator demo video- https://1drv.ms/u/s!Ao1DoT0ASTaHiiqrxx1_si4tRg7P?e=jhBqe7
+
+
+## FAQs
+***
+
+Q Is this application awesome?
+
+A Why yes it is!
+---
 
 # 10 Object-Oriented Programming: Team Profile Generator
 

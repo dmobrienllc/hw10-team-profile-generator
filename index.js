@@ -22,8 +22,20 @@ const addManager = () => {
     },
     {
       type: "input",
-      message: "What is the managers email?",
-      name: "mgremail"
+      message: "Please enter your email",
+      name: "mgremail",
+      default: () => {},
+      validate: function (email) {
+
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+          if (valid) {
+              return true;
+          } else {
+              console.log(".  Please enter a valid email")
+              return false;
+          }
+      }
     },
     {
         type: "input",
@@ -87,8 +99,20 @@ const addTeamMember = () => {
         },
         {
           type: "input",
-          message: "What is the intern's email?",
-          name: "email"
+          message: "What is the intern's email",
+          name: "email",
+          default: () => {},
+          validate: function (email) {
+    
+              valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    
+              if (valid) {
+                  return true;
+              } else {
+                  console.log(".  Please enter a valid email")
+                  return false;
+              }
+          }
         },
         {
             type: "input",
@@ -115,8 +139,20 @@ const addTeamMember = () => {
         },
         {
           type: "input",
-          message: "What is the engineer's email?",
-          name: "email"
+          message: "What is the engineer's email",
+          name: "email",
+          default: () => {},
+          validate: function (email) {
+    
+              valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    
+              if (valid) {
+                  return true;
+              } else {
+                  console.log(".  Please enter a valid email")
+                  return false;
+              }
+          }
         },
         {
             type: "input",

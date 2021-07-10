@@ -43,65 +43,56 @@ class TemplateHelper {
   generateTeamCards() {
     let teamCardsHtml = '';
 
-    for(let i=0;i<this.teamController.teamMembers.length;i++){
+    for (let i = 0; i < this.teamController.teamMembers.length; i++) {
       let member = this.teamController.teamMembers[i];
 
-      if(member instanceof Manager){
+      if (member instanceof Manager) {
         teamCardsHtml += this.generateManagerCard(member);
-      }else if(member instanceof Engineer){
+      } else if (member instanceof Engineer) {
         teamCardsHtml += this.generateEngineerCard(member);
-      }else{
+      } else {
         teamCardsHtml += this.generateInternCard(member);
       }
     }
     return teamCardsHtml;
   }
 
-  //for now just use seperate methods to do this, refactor later to avoid duplication
-  //if it makes sense
-  generateManagerCard(manager){
-    return `<div class="card">
-              <div class="card-header">
-                <h3>${manager.getName()}</h3>
-                <h4><i class="fas fa-mug-hot"></i> Manager</h4>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Id: ${manager.getId()}</p>
-                <p class="card-text">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
-                <p class="card-text">Office Number: ${manager.getOfficeNumber()}</p>
-              </div>
-            </div>
-          `
+  generateTeamCards() {
+    let teamCardsHtml = '';
+
+    for (let i = 0; i < this.teamController.teamMembers.length; i++) {
+      let member = this.teamController.teamMembers[i];
+      teamCardsHtml += this.generateCard(member);
+    }
+    return teamCardsHtml;
   }
 
-  generateEngineerCard(engineer){
-    return `<div class="card">
-              <div class="card-header">
-                <h3>${engineer.getName()}</h3>
-                <h4><i class="fas fa-glasses"></i> ${engineer.getRole()} </h4>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Id: ${engineer.getId()}</p>
-                <p class="card-text">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
-                <p class="card-text">GitHub Profile: <a href="${engineer.getGitHubAccountUrl()}">${engineer.getGitHubAccountName()}</a></p>
-              </div>
-            </div>
-          `
-  }
+  generateCard(member) {
+    let cardHtml = '';
+    cardHtml = `<div class="card">
+                  <div class="card-header">
+                    <h3>${member.getName()}</h3>
+                    <h4>${member.getIconTag()} ${member.getRole()}</h4>
+                  </div>
+                <div class="card-body">
+                  <p class="card-text">Id: ${member.getId()}</p>
+                  <p class="card-text">Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+                `
+    if (member instanceof Manager) {
+      cardHtml += `<p class="card-text">Office Number: ${member.getOfficeNumber()}</p>
+                  `
+    } else if (member instanceof Engineer) {
+      cardHtml += `<p class="card-text">GitHub Profile: <a href="${member.getGitHubAccountUrl()}">${member.getGitHubAccountName()}</a></p>
+                  `
+    } else {
+      cardHtml += `<p class="card-text">School: ${member.getSchool()}</a></p>
+                  `
+    }
 
-  generateInternCard(intern){
-    return `<div class="card">
-              <div class="card-header">
-                <h3>${intern.getName()}</h3>
-                <h4><i class="fas fa-user-graduate"></i> Intern</h4>
+    cardHtml += `</div>
               </div>
-              <div class="card-body">
-                <p class="card-text">Id: ${intern.getId()}</p>
-                <p class="card-text">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
-                <p class="card-text">School: ${intern.getSchool()}</a></p>
-              </div>
-            </div>
-          `
+              `
+    return cardHtml;
   }
 
   generateFooter() {
