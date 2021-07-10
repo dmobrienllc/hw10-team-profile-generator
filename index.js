@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const TeamController = require('./lib/team-controller');
+const TemplateHelper = require('./src/template-helper');
+const { exception } = require('console');
 
 let teamController = new TeamController("");
-
+let isDoneAddingMembers = false;
 let isTesting = true;
 
 const addManager = () => {
@@ -45,7 +47,7 @@ const addTeamMember = () => {
     inquirer.prompt([
       {
         type: "list",
-        message: "Please select type of team member to add, or select 'None' to render profile. ",
+        message: "Please select type of team member to add, or select 'None' when completed. ",
         choices: [ "Intern", "Engineer", "None" ],
         name: "employeeTypeToAdd"
       }
@@ -60,7 +62,8 @@ const addTeamMember = () => {
           break;
   
         case "None":
-          renderProfile();
+          isDoneAddingMembers = true;
+          start();
           break;
   
         default:
@@ -68,10 +71,6 @@ const addTeamMember = () => {
           break;
       }
     })
-  }
-
-  const renderProfile = () => {
-      console.log(teamController);
   }
 
   const addIntern = () => {
@@ -98,7 +97,6 @@ const addTeamMember = () => {
         }
       ]).then( ({id,name, email, school}) => {
             teamController.addIntern(id,name,email, school);
-            console.log(JSON.stringify(teamController));
             start();
       });
   }
@@ -127,17 +125,36 @@ const addTeamMember = () => {
         }
       ]).then( ({id,name, email, githubacct}) => {
             teamController.addEngineer(id,name,email, githubacct);
-            console.log(JSON.stringify(teamController));
             start();
       });
   }
 
-const start = () => {
-    if(!teamController.managerAdded){
-        addManager();
-    }else{
-        addTeamMember();
+  const renderProfile = () => {
+    let templateHelper = new TemplateHelper(teamController);
+    let profileHtml = templateHelper.generateTeamProfileHtml();
+
+    try{
+        fs.writeFile(`./dist/teamprofile.html`, profileHtml, (err) => {
+            if (err) throw new exception(err.message);
+            console.log('The file has been saved!');
+          });
     }
+    catch (error) {
+        console.error(error);
+      }
+  }
+
+const start = () => {
+    if(!isDoneAddingMembers){
+        if(!teamController.managerAdded){
+            addManager();
+        }else{
+            addTeamMember();
+        }
+    }else{
+        renderProfile();
+    }
+    
 }
 
 start();
