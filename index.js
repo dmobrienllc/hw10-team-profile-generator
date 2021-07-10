@@ -50,7 +50,6 @@ const addManager = () => {
   ]).then( ({mgrid,mgrname, mgremail, mgrofficenbr, teamname}) => {
         teamController.setTeamName(teamname);
         teamController.addManager(mgrid,mgrname, mgremail, mgrofficenbr);
-        console.log(JSON.stringify(teamController));
         start();
   });
 }
